@@ -1,5 +1,7 @@
 package com.example.AVLTree;
 
+import com.sun.istack.internal.NotNull;
+
 /**
  * Created by BigFaceBear on 2017.10.14
  */
@@ -33,6 +35,38 @@ public class AVLTree {
         }
 
         return balance(node);
+    }
+
+    public AVLNode<Integer> delete(Integer x) {
+        root = delete(x, root);
+        return root;
+    }
+
+    /**
+     * 删除节点
+     *
+     * @param x    待删除元素
+     * @param node 删除节点的根节点
+     * @return 删除节点的根节点
+     */
+    private AVLNode<Integer> delete(Integer x, AVLNode<Integer> node) {
+        if (node == null) {
+            return null;
+        }
+
+        if (x < node.element) {
+            node.left = delete(x, node.left);
+        } else if (x > node.element) {
+            node.right = delete(x, node.right);
+        } else if (node.left != null && node.right != null) {
+            node.element = findMin(node.right).element;
+            node.right = delete(node.element, node.right);
+        } else {
+            node = node.left != null ? node.left : node.right;
+        }
+
+        return balance(node);
+
     }
 
     public int getHeight(AVLNode<Integer> node) {
@@ -115,6 +149,39 @@ public class AVLTree {
     private AVLNode<Integer> doubleRotateWithRightChild(AVLNode<Integer> node) {
         node.right = singleRotateWithLeftChild(node.right);
         return singleRotateWithRightChild(node);
+    }
+
+    /**
+     * 找到当前节点node下的最小值
+     *
+     * @param node
+     * @return
+     */
+    private AVLNode<Integer> findMin(AVLNode<Integer> node) {
+        if (node == null) return null;
+
+        if (node.left != null)
+            return findMin(node.left);
+        else
+            return node;
+    }
+
+    private AVLNode<Integer> getParent(Integer x, AVLNode<Integer> node) {
+        if (node == null) return null;
+
+        if (node.left != null && node.left.element == x) {
+            return node;
+        } else if (node.right != null && node.right.element == x) {
+            return node;
+        } else {
+            AVLNode<Integer> parent = getParent(x, node.left);
+
+            if (parent == null) {
+                parent = getParent(x, node.right);
+            }
+
+            return parent;
+        }
     }
 
     private static final int ELEMENT_SPAN = 3;  //最后一行每两个元素之间的间距
