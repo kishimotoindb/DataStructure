@@ -1,20 +1,13 @@
 package com.example.chapter3.exercise;
 
+import com.example.BaseDataStructure.DoubleNode;
+import com.example.BaseDataStructure.SingleNode;
+
 /**
  * Created by BigFaceBear on 2018.01.16
  */
 
 public class No2 {
-    static class SingleNode {
-        int value;
-        SingleNode next;
-    }
-
-    static class DoubleNode {
-        int value;
-        DoubleNode prev;
-        DoubleNode next;
-    }
 
     public static void main(String[] args) {
         SingleNode s1 = new SingleNode();
