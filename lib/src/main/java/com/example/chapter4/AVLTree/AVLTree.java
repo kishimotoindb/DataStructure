@@ -1,6 +1,4 @@
-package com.example.AVLTree;
-
-import com.sun.istack.internal.NotNull;
+package com.example.chapter4.AVLTree;
 
 /**
  * Created by BigFaceBear on 2017.10.14

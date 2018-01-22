@@ -1,4 +1,4 @@
-package com.example.Queue;
+package com.example.chapter3.implementation.Queue;
 
 import java.util.Collection;
 import java.util.Iterator;

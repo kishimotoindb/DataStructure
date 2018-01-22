@@ -1,4 +1,4 @@
-package com.example.AVLTree;
+package com.example.chapter4.AVLTree;
 
 /**
  * Created by BigFaceBear on 2017.10.14
